@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+     stages {
+        stage('Git Checkout') {
+            steps {
+                git branch: 'master', credentialsId: 'github', url: 'https://github.com/kanirin/Vault-deployment'
+            }
+        }
+        stage('Ansible') {
+            environment {
+                // Example: ANSIBLE_HOSTS, ANSIBLE_PRIVATE_KEY_FILE, etc.
+            }
+            steps {
+                script {
+                    sh ''
+                    sh 'ansible-playbook Vault-deployment/dev/us-east-2/sec-pam-ans-deploy-vault/playbook.yml'
+                }
+            }
+        }
+    }
+}
