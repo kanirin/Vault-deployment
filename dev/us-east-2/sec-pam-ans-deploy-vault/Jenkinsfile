@@ -13,7 +13,7 @@ pipeline {
             steps {
                 script {
                     sh ''
-                    sh 'ansible-playbook Vault-deployment/dev/us-east-2/sec-pam-ans-deploy-vault/playbook.yml'
+                    sh 'ansible-playbook dev/us-east-2/sec-pam-ans-deploy-vault/playbook.yml'
                 }
             }
         }
