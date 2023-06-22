@@ -5,11 +5,11 @@
     - name: Copy Python script
       copy:
         src: dev/us-east-2/sec-pam-ans-deploy-vault/hello.py  #from where(from master)
-        dest: /tmp/your_script.py  #to where(hosts)
+        dest: /tmp/hello.py  #to where(hosts)
         mode: '0755'  #permission to file
 
     - name: Run Python script
-      command: python3 /tmp/your_script.py  # Replace with the correct command to run your script
+      command: python3 /tmp/hello.py  # Replace with the correct command to run your script
       register: script_output  # Register the output of the script
 
     - name: Display script output
