@@ -7,9 +7,9 @@ pipeline {
             }
         }
         stage('Ansible') {
-            environment {
-                // Example: ANSIBLE_HOSTS, ANSIBLE_PRIVATE_KEY_FILE, etc.
-            }
+            // environment {
+            //     // Example: ANSIBLE_HOSTS, ANSIBLE_PRIVATE_KEY_FILE, etc.
+            // }
             steps {
                 script {
                     sh ''
