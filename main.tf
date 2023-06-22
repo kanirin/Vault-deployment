@@ -1,9 +1,17 @@
-resource "aws_default_vpc" "default" {
-  tags = {
-    Name = "Default VPC"
+terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "5.4.0"
+    }
   }
 }
 
 provider "aws" {
-  region = "us-east-1"
+  # Configuration options
+}
+
+module "vpc_example_complete-vpc" {
+  source  = "terraform-aws-modules/vpc/aws//examples/complete-vpc"
+  version = "1.52.0"
 }
