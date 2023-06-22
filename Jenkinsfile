@@ -11,15 +11,14 @@ pipeline {
                 git branch: 'master', credentialsId: 'github', url: 'https://github.com/kanirin/Vault-deployment'
             }
         }
-        stage('Terraform Validate') {
-            steps {
-                sh 'terraform validate'
-            }
-        }
-
         stage('Terraform Init') {
             steps {
                 sh 'terraform init -reconfigure'
+            }
+        }
+        stage('Terraform Validate') {
+            steps {
+                sh 'terraform validate'
             }
         }
         stage('Terraform Plan') {
@@ -93,3 +92,5 @@ pipeline {
         }
     }
 }
+
+// def
