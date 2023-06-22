@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                git branch: 'master', credentialsId: 'github', url: 'https://github.com/kanirin/Vault-deployment'
+                git branch: 'master', credentialsId: 'github', url: 'https://github.com/kanirin/Vault-deployment.git'
             }
         }
         stage('Terraform Init') {
