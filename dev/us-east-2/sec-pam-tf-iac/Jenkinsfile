@@ -35,6 +35,7 @@ pipeline {
                         secretKeyVariable: 'AWS_SECRET_ACCESS_KEY',
                         credentialsId: 'aws-creds'
                     ]]) {
+                        sh 'pwd'
                         sh 'terraform plan'
                 }
 	        }
