@@ -19,6 +19,7 @@ pipeline {
                 sh '''
                 cd $TF_IAC_PATH
                     terraform init -reconfigure
+                    ls -a
                 '''
              
             }
