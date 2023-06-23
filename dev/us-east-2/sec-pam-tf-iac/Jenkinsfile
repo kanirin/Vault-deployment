@@ -18,7 +18,8 @@ pipeline {
             steps {
                 sh '''
                 cd $TF_IAC_PATH
-                    terraform init -reconfigure
+                    rm -rf .terraform*
+                    terraform init -upgrade
                     ls -a
                 '''
              
