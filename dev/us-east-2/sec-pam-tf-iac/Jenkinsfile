@@ -23,15 +23,14 @@ pipeline {
              
             }
         }
-        // stage('Terraform Validate') {
-        //     steps {
-        //         sh ''' 
-        //             cd $TF_IAC_PATH
-        //             terraform validate
-        //             pwd
-        //         '''
-        //     }
-        // }
+        stage('Terraform Validate') {
+            steps {
+                sh ''' 
+                    cd $TF_IAC_PATH
+                    terraform validate
+                '''
+            }
+        }
         stage('Terraform Plan') {
             when {
                 not {
