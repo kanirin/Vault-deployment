@@ -1,5 +1,5 @@
 - name: Run Python script
-  hosts: dev_servers # Replace with the host group(in inventory)
+  hosts: all # Replace with the host group(in inventory)
   # connection: local
 
   tasks:
