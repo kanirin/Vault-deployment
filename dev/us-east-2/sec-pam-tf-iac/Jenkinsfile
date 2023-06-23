@@ -36,6 +36,7 @@ pipeline {
                         credentialsId: 'aws-creds'
                     ]]) {
                         sh 'pwd'
+                        sh 'ls'
                         sh 'terraform plan'
                 }
 	        }
