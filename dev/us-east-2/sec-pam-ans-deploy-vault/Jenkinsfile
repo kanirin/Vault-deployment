@@ -12,8 +12,9 @@ pipeline {
             // }
             steps {
                 script {
-                    sh ''
-                    sh 'ansible-playbook dev/us-east-2/sec-pam-ans-deploy-vault/playbook.yml'
+                    sh '''
+                        ansible-playbook -i dev/us-east-2/sec-pam-ans-deploy-vault/inv.ini dev/us-east-2/sec-pam-ans-deploy-vault/playbook.yml
+                    '''
                 }
             }
         }

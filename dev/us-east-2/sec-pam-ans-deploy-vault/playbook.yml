@@ -1,6 +1,6 @@
 - name: Run Python script
-  hosts: localhost  # Replace with the host group(in inventory)
-  connection: local
+  hosts: dev_servers # Replace with the host group(in inventory)
+  # connection: local
 
   tasks:
     - name: Copy Python script
