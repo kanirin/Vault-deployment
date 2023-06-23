@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        FOLDER_PATH = 'dev/us-east-2/sec-pam-tf-iac'
+        TF_IAC_PATH = 'dev/us-east-2/sec-pam-tf-iac'
     }
     parameters {
         string(name: 'environment', defaultValue: 'terraform', description: 'Workspace/environment file to use for deployment')
@@ -17,7 +17,7 @@ pipeline {
         stage('Terraform Init') {
             steps {
                 sh '''
-                    cd $FOLDER_PATH
+                cd $TF_IAC_PATH
                     terraform init -reconfigure
                 '''
              
@@ -26,6 +26,7 @@ pipeline {
         stage('Terraform Validate') {
             steps {
                 sh ''' 
+                    cd $TF_IAC_PATH
                     terraform validate
                     pwd
                 '''
@@ -44,9 +45,10 @@ pipeline {
                         secretKeyVariable: 'AWS_SECRET_ACCESS_KEY',
                         credentialsId: 'aws-creds'
                     ]]) {
-                        sh 'pwd'
-                        sh 'ls'
-                        sh 'terraform plan'
+                        sh '''
+                            cd $TF_IAC_PATH
+                            terraform plan
+                        '''
                 }
 	        }
         }
@@ -80,7 +82,10 @@ pipeline {
                         secretKeyVariable: 'AWS_SECRET_ACCESS_KEY',
                         credentialsId: 'aws-creds'
                     ]]) {           
-                sh 'terraform apply --auto-approve'
+                sh '''
+                    cd $TF_IAC_PATH
+                    terraform apply --auto-approve
+                '''
                     }
             }
         }
@@ -89,7 +94,10 @@ pipeline {
                 equals expected: true, actual: params.destroy
             } 
             steps {          
-            sh 'terraform destroy --auto-approve'    
+            sh '''
+                cd $TF_IAC_PATH
+                terraform destroy --auto-approve
+            '''    
             }
         }
         // stage('Run Bash Script') {
