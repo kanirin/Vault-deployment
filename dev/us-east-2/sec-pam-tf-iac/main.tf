@@ -1,7 +1,5 @@
-resource "aws_default_vpc" "default" {
-  tags = {
-    Name = "Default VPC"
-  }
+resource "aws_vpc" "default" {
+  cidr_block = "10.0.0.0/16"
 }
 
 terraform {
