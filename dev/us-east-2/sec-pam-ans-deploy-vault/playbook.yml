@@ -5,7 +5,7 @@
   tasks:
     - name: Copy Python script
       copy:
-        src: dev/us-east-2/sec-pam-ans-deploy-vault/hello.py  #from where(from master)
+        src: hello.py  #from where(from master)
         dest: /tmp/hello.py  #to where(hosts)
         mode: '0755'  #permission to file
 
@@ -20,3 +20,5 @@
     - name: Display script error
       debug:
         var: script_output.stderr  # Print the script's stderr output
+
+        # dev/us-east-2/sec-pam-ans-deploy-vault/
