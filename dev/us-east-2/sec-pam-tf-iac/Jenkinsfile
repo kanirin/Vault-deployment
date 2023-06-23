@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        FOLDER_PATH = 'dev/us-east-2/sec-pam-tf-iac'
+    }
     parameters {
         string(name: 'environment', defaultValue: 'terraform', description: 'Workspace/environment file to use for deployment')
         booleanParam(name: 'autoApprove', defaultValue: false, description: 'Automatically run apply after generating plan?')
@@ -13,13 +16,19 @@ pipeline {
         }
         stage('Terraform Init') {
             steps {
-                sh 'terraform init -reconfigure'
-                sh 'pwd'
+                sh '''
+                    cd $FOLDER_PATH
+                    terraform init -reconfigure
+                '''
+             
             }
         }
         stage('Terraform Validate') {
             steps {
-                sh 'terraform validate'
+                sh ''' 
+                    terraform validate
+                    pwd
+                '''
             }
         }
         stage('Terraform Plan') {
