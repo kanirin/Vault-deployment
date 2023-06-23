@@ -17,10 +17,8 @@ pipeline {
         stage('Terraform Init') {
             steps {
                 sh '''
-                cd $TF_IAC_PATH
-                    rm -rf .terraform*
-                    terraform init -upgrade
-                    ls -a
+                    cd $TF_IAC_PATH
+                    terraform init -reconfigure
                 '''
              
             }
@@ -52,7 +50,7 @@ pipeline {
                             terraform plan
                         '''
                 }
-	        }
+            }
         }
         stage('Approval') {
            when {
@@ -115,4 +113,4 @@ pipeline {
     }
 }
 
-// def
+
